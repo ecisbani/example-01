@@ -8,13 +8,13 @@ $_SESSION['WIDGET'] = 'https://t4idwidget-int.time4mind.com/';
 
 /*
 Il metodo getTransactionId consente di generare un transactionId univoco associato ad una regola temporanea di accesso. Tale regola definisce l'attestazione di un accesso sul nodo relativo all'utente amministrazione che richiede il transactionId invocando il metodo in questione.
-Il metodo consente, in modo opzionale, di specificare all'interno della regola di accesso un identificativo esterno (extUserId) per rafforzare la fase di autenticazione dell'utente. Il metodo è accessibile sia tramite protocollo SOAP che tramite chiamata via JSON-RPC 2.0 al seguente URL:
+Il metodo consente, in modo opzionale, di specificare all'interno della regola di accesso un identificativo esterno (extUserId) per rafforzare la fase di autenticazione dell'utente. Il metodo è accessibile via JSON-RPC 2.0 al seguente URL:
 http://[host]:[port]/Time4UserServices/services/backend/t4ujson
 
 Input 
 	Nome: extUserId
 	Tipo: string
-	Opt : yes
+	Req : optional
 	Desc: Id uniq of user in the original Company context (i.e. email)
 Output
 	Nome: transactionId
@@ -37,6 +37,22 @@ global $hostname;
 
 	return $result['transactionId'];
 }
+
+/*
+Il metodo authenticateByUser consente di verificare una OTP associata ad un identificativo esterno (extUserId). Il metodo è accessibile via JSON-RPC 2.0 al seguente URL:
+http://[host]:[port]/Time4eID/backend/auth
+
+Input 
+        Nome: extUserId
+        Tipo: string
+        Req : mandatory
+        Desc: Id uniq of user in the original Company context (i.e. email)
+Output
+        Nome: transactionId
+        Tipo: string
+        Desc: temporary Id to associate the user to the Company
+*/
+
 
 function authOTP($otp) 
 {	
