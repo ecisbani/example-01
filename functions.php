@@ -1,10 +1,7 @@
 <?php
 
+include 'config.php';
 include 'JsonRpcClient.php';
-$cert_pwd = 'password';
-$cert_name = './certificate.pem';
-$hostname = 'https://services-int.time4mind.com';
-$_SESSION['WIDGET'] = 'https://t4idwidget-int.time4mind.com/';
 
 /*
 Il metodo getTransactionId consente di generare un transactionId univoco associato ad una regola temporanea di accesso. Tale regola definisce l'attestazione di un accesso sul nodo relativo all'utente amministrazione che richiede il transactionId invocando il metodo in questione.
