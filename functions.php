@@ -19,7 +19,7 @@ Output
 	Desc: temporary Id to associate the user to the Company
 */
 
-function getTransacionID()
+function getTransacionID($username)
 {
 global $cert_pwd;
 global $cert_name;
@@ -29,7 +29,7 @@ global $hostname;
 	$client->sslCheck(false);
 	$client->sslClientAuth($cert_name, $cert_pwd);
 	$client->debug = false;
-	$param = array('extUserId' => $_SESSION['username']);
+	$param = array('extUserId' => $username);
 	$result = $client->getTransactionId($param);
 
 	return $result['transactionId'];
@@ -51,7 +51,7 @@ Output
 */
 
 
-function authOTP($otp) 
+function authOTP($username,$otp) 
 {	
 global $cert_pwd;
 global $cert_name;
@@ -62,10 +62,12 @@ global $hostname;
 	$client->sslClientAuth($cert_name, $cert_pwd);
 	
 	try {
-		/*$param = array( 'userId' => $_SESSION['username'],
+		// ########## sostituire quando funzionerà authenticateByUser
+		// anche la chiamata in otp.php
+		/*$param = array( 'userId' => $username],
 				'otp' => $otp);
 		$result = $client->authenticateByUser($param);*/
-		$param = array( 'uniqueTokenId' => $_SESSION['uniqueTokenId'],
+		$param = array( 'uniqueTokenId' => $username,
 				'otp' => $otp);
 		$result = $client->authenticate($param); 
 		}
@@ -73,6 +75,24 @@ global $hostname;
 		$result = $e->getCode()." (".$e->getMessage().")" ;
                 }
 	return $result;
+}
+
+
+// check if the user need to enroll
+function enroll($user)
+{
+global $cert_pwd;
+global $cert_name;
+global $hostname;
+	$client = new JsonRpcClient($hostname.'/Time4eID/backend/auth');
+	
+	$client->sslCheck(false);
+	$client->sslClientAuth($cert_name, $cert_pwd);
+	$client->debug = false;
+	$param = array('userId' => $user);
+	$result = $client->listToken($param);
+	return $result; 
+
 }
 
 ?>

@@ -1,36 +1,28 @@
 <?php
 session_start(); 
-$error=''; 
+
+// POST => login submitted
+$error='';
 if (isset($_POST['submit'])) {
+	// fake authentication: any userid valid, only one password is ok
 	if (empty($_POST['username']) || ($_POST['password'] != 'aaa')) {
 		$error = "Username or Password invalid";
 		}
 	else {
 		$_SESSION['username']=$_POST['username']; 
+		header("location: otp.php");
 		}
 	}
 
-if ($_GET) {
-	if (array_key_exists('uID',$_GET)) { 
-		$_SESSION['uniqueTokenId'] = $_GET['uID'];
-		}
-	if (array_key_exists('logout',$_GET)) {
-		session_destroy();
-		session_start();
-		header('Location: '.$_SERVER['PHP_SELF']);
-		}
-	}
-        
-if(isset($_SESSION['username'])){
-	if (!array_key_exists('uniqueTokenId',$_SESSION)) {
-		$_SESSION['uniqueTokenId'] = 'FA4524AD4C3A49EDEEFA32E9E761BBD390AC178154535D45B14377AE8228058A';
-		}
-	header("location: otp.php");
+// GET => logout from otp.php
+if (isset($_GET['logout'])) {
+	session_destroy();
+	header('Location: '.$_SERVER['PHP_SELF']);
 	}
 ?>
 
 <!DOCTYPE html> <html> <head> <title>Login Form in PHP</title> </head> <body>
-<h4>PHP Login with Valid 2FA Example</h4>
+<h4>Valid 2FA Simple Integration Example</h4>
 
 <form action="" method="post">
 	<p><label>Username :</label>

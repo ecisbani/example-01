@@ -2,12 +2,12 @@
 session_start();
 include 'functions.php';
 
-$_SESSION['TransactionID'] = getTransacionID();    
+// associate a TransactionID to the username
+$_SESSION['TransactionID'] = getTransacionID($_SESSION['username']);    
 
-if ($_SESSION['TransactionID']=='') {
-	header("Location: ".$_SERVER['HTTP_REFERER'].'?msg=1000');
-	}
-else {
+// redirect the browser to the Valid pages to complete the enroll procedure
+if ($_SESSION['TransactionID']!='') {
 	header("Location: ".$_SESSION['WIDGET']."serv/getCompanyServiceInfo.php?tid=".$_SESSION['TransactionID']."&extUID=".$_SESSION['username']);
 }
 ?>
+

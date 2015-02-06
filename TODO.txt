@@ -1,4 +1,4 @@
 
-* translate to english
+* translate to english functions def
 
-* more info/documentation inline
+* README.md
