@@ -4,8 +4,10 @@ include 'config.php';
 include 'JsonRpcClient.php';
 
 /*
-Il metodo getTransactionId consente di generare un transactionId univoco associato ad una regola temporanea di accesso. Tale regola definisce l'attestazione di un accesso sul nodo relativo all'utente amministrazione che richiede il transactionId invocando il metodo in questione.
-Il metodo consente, in modo opzionale, di specificare all'interno della regola di accesso un identificativo esterno (extUserId) per rafforzare la fase di autenticazione dell'utente. Il metodo è accessibile via JSON-RPC 2.0 al seguente URL:
+This method generate a uniq transactionId associated with a temporary access rule. 
+This rule define the access as belonging to the company account who made the request. 
+You should specify the company username (extUserId) to strengthen the user authentication.
+The method is available via JSON-RPC 2.0 at the URL:
 http://[host]:[port]/Time4UserServices/services/backend/t4ujson
 
 Input 
@@ -23,8 +25,8 @@ function getTransacionID($username)
 {
 global $cert_pwd;
 global $cert_name;
-global $t4u_host;
-	$client = new JsonRpcClient($t4u_host.'/Time4UserServices/services/backend/t4ujson');
+global $sme_host;
+	$client = new JsonRpcClient($sme_host.'/Time4UserServices/services/backend/t4ujson');
 	
 	$client->sslCheck(false);
 	$client->sslClientAuth($cert_name, $cert_pwd);
@@ -36,7 +38,8 @@ global $t4u_host;
 }
 
 /*
-Il metodo authenticateByUser consente di verificare una OTP associata ad un identificativo esterno (extUserId). Il metodo è accessibile via JSON-RPC 2.0 al seguente URL:
+The method authenticateByUser verify a OTP associated to a given company username (extUserId). 
+The method is available via JSON-RPC 2.0 at the URL:
 http://[host]:[port]/Time4eID/backend/auth
 
 Input 
@@ -55,8 +58,8 @@ function authOTP($username,$otp)
 {	
 global $cert_pwd;
 global $cert_name;
-global $t4id_host;
-	$client = new JsonRpcClient($t4id_host.'/Time4eID/backend/auth');
+global $sme_host;
+	$client = new JsonRpcClient($sme_host.'/Time4eID/backend/auth');
 	$client->debug = false;
 	$client->sslCheck(false);
 	$client->sslClientAuth($cert_name, $cert_pwd);
@@ -75,24 +78,6 @@ global $t4id_host;
 		$result = $e->getCode()." (".$e->getMessage().")" ;
                 }
 	return $result;
-}
-
-
-// check if the user need to enroll
-function enroll($user)
-{
-global $cert_pwd;
-global $cert_name;
-global $hostname;
-	$client = new JsonRpcClient($hostname.'/Time4eID/backend/auth');
-	
-	$client->sslCheck(false);
-	$client->sslClientAuth($cert_name, $cert_pwd);
-	$client->debug = false;
-	$param = array('userId' => $user);
-	$result = $client->listToken($param);
-	return $result; 
-
 }
 
 ?>

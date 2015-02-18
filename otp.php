@@ -29,7 +29,6 @@ if (isset($_GET['uID'])) {
 	setcookie('uniqueTokenId', $_GET['uID'], time() + (86400 * 365), "/");
         header("location: otp.php");
         }
-
 ?>
 
 <!DOCTYPE html><html><head> <title>Time4eID DEMO</title> </head>
