@@ -1,4 +1,8 @@
 
-* translate to english functions def
+* authenticate by external (company) userID
+
+* check for available user before start enroll
+
+* check auth error 616 that need user action resync
 
 * README.md
