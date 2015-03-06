@@ -1,7 +1,7 @@
 <?php
 
 # Credentials PEM file and password
-$cert_name = '/var/www/ssl/LOS-col_20150213.pem';
+$cert_name = '/var/www/ssl/certificate.pem';
 $cert_pwd = 'password';
 
 # hostname for RPC

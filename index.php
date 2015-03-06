@@ -5,8 +5,8 @@ session_start();
 $error='';
 if (isset($_POST['submit'])) {
 	// fake authentication: any userid valid, only one password is ok
-	if (empty($_POST['username']) || ($_POST['password'] != 'aaa')) {
-		$error = "Username or Password invalid";
+	if (empty($_POST['username']) || ($_POST['password'] != 'Valid!')) {
+		$error = "The password you entered isn't Valid!";
 		}
 	else {
 		$_SESSION['username']=$_POST['username']; 
