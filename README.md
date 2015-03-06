@@ -5,7 +5,7 @@ Very simple implementation of Valid using php.
    choose a password and put it in a *safe* place
 
 2) convert P12 to PEM format using the script 
-   (the PEM format is just more usable)
+   (the PEM format is more usable)
 
 3) put PEM file in a *safe* place 
    (NOT under the web documet root!)

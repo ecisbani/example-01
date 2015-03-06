@@ -4,10 +4,11 @@ include 'config.php';
 include 'JsonRpcClient.php';
 
 /*
-This method generate a uniq transactionId associated with a temporary access rule. 
-This rule define the access as belonging to the company account who made the request. 
-You should specify the company username (extUserId) to strengthen the user authentication.
-The method is available via JSON-RPC 2.0 at the URL:
+This method generate a uniq transactionId associated with a temporary 
+access rule. This rule define the access as belonging to the company 
+account who made the request. You should specify the company username 
+(extUserId) to strengthen the user authentication.
+This method is available via JSON-RPC 2.0 at the URL:
 http://[host]:[port]/Time4UserServices/services/backend/t4ujson
 
 Input 
@@ -38,8 +39,8 @@ global $sme_host;
 }
 
 /*
-The method authenticateByUser verify a OTP associated to a given company username (extUserId). 
-The method is available via JSON-RPC 2.0 at the URL:
+This method authenticateByUser verify a OTP associated to a given company username (extUserId). 
+This method is available via JSON-RPC 2.0 at the URL:
 http://[host]:[port]/Time4eID/backend/auth
 
 Input 
@@ -65,14 +66,9 @@ global $sme_host;
 	$client->sslClientAuth($cert_name, $cert_pwd);
 	
 	try {
-		// ########## sostituire quando funzionerà authenticateByUser
-		// anche la chiamata in otp.php
-		/*$param = array( 'userId' => $username],
+		$param = array( 'userId' => $username,
 				'otp' => $otp);
-		$result = $client->authenticateByUser($param);*/
-		$param = array( 'uniqueTokenId' => $username,
-				'otp' => $otp);
-		$result = $client->authenticate($param); 
+		$result = $client->authenticateByUser($param);
 		}
 	catch (JsonRpcFault $e) {
 		$result = $e->getCode()." (".$e->getMessage().")" ;

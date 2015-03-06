@@ -1,7 +1,5 @@
 
-* authenticate by external (company) userID
+* check for available user before to start enroll
 
-* check for available user before start enroll
-
-* check auth error 616 that need user action resync
+* tips to manage enroll error codes
 
