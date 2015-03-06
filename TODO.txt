@@ -5,4 +5,3 @@
 
 * check auth error 616 that need user action resync
 
-* README.md
