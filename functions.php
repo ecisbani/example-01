@@ -4,21 +4,19 @@ include 'config.php';
 include 'JsonRpcClient.php';
 
 /*
-This method generate a uniq transactionId associated with a temporary 
-access rule. This rule define the access as belonging to the company 
-account who made the request. You should specify the company username 
-(extUserId) to strengthen the user authentication.
-This method is available via JSON-RPC 2.0 at the URL:
-http://[host]:[port]/Time4UserServices/services/backend/t4ujson
+The method getTransactionID generate a uniq transactionId associated with 
+a temporary access rule. This rule define the access as belonging to the 
+company account who made the request. You must specify the company username 
+(extUserId). This method is available via JSON-RPC 2.0 at the URL:
+    http://[host]:[port]/Time4UserServices/services/backend/t4ujson
 
 Input 
-	Nome: extUserId
-	Tipo: string
-	Req : optional
+    Name: extUserId
+	Type: string
 	Desc: Id uniq of user in the original Company context (i.e. email)
 Output
-	Nome: transactionId
-	Tipo: string
+    Name: transactionId
+	Type: string
 	Desc: temporary Id to associate the user to the Company
 */
 
@@ -41,17 +39,16 @@ global $sme_host;
 /*
 This method authenticateByUser verify a OTP associated to a given company username (extUserId). 
 This method is available via JSON-RPC 2.0 at the URL:
-http://[host]:[port]/Time4eID/backend/auth
+    http://[host]:[port]/Time4eID/backend/auth
 
 Input 
-        Nome: extUserId
-        Tipo: string
-        Req : mandatory
+    Name: UserId
+        Type: string
         Desc: Id uniq of user in the original Company context (i.e. email)
-Output
-        Nome: transactionId
-        Tipo: string
-        Desc: temporary Id to associate the user to the Company
+
+    Name: otp
+        Type: string
+        Desc: one time password to authenticate
 */
 
 
