@@ -13,7 +13,6 @@ if (!isset($_SESSION['username'])) {
 if ($_POST) {
 	$otp = $_POST['otp'];   
         if ($otp!='') {
-		// ########## sostituire quando funzionerà authenticateByUser
 		$response = authOTP($_SESSION['username'],$otp);
 		if ($response == '') $response = 'ok';
 	/* You should manage some bad responses, most relevant cases are:
@@ -26,8 +25,8 @@ if ($_POST) {
 			   her should go to the enroll process 
 	*/
 		}
-        }
-
+        } 
+else {
 // GET => enroll completed
 if (isset($_GET['uID'])) {
 	$response = $_GET['uID'];
@@ -50,6 +49,7 @@ if (isset($_GET['msg'])) {
 1001 = Well done! The service is now enabled
 */
 	}
+}
 ?>
 
 <!DOCTYPE html><html><head> <title>Time4eID DEMO</title> </head>
