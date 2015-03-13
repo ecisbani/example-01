@@ -13,6 +13,8 @@ $time4user_methods = 'https://sme.time4mind.com/Time4UserServices/services/backe
 $time4id_methods = 'https://sme.time4mind.com/Time4eIDv2/backend/auth';
 */
 
+// questo deve restare nel branch master anche se faccio merge
+
 /* Collaudo */
 $_SESSION['WIDGET'] = 'https://valid.test4mind.com/serv/getCompanyServiceInfo.php';
 $time4user_methods = 'https://sme.test4mind.com/Time4UserServices/services/backend/t4ujson';
