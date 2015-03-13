@@ -1,7 +1,7 @@
 <?php
 
 // Credentials PEM file and password
-$cert_name = '/var/www/ssl/certificate.pem';
+$cert_name = '/var/www/ssl/certificate.pem_collaudo';
 $cert_pwd = 'password';
 
 /* Collaudo */
