@@ -7,7 +7,7 @@ $_SESSION['TransactionID'] = getTransacionID($_SESSION['username']);
 
 // redirect the browser to the Valid pages to complete the enroll procedure
 if ($_SESSION['TransactionID']!='') {
-	header("Location: ".$_SESSION['WIDGET']."serv/getCompanyServiceInfo.php?tid=".$_SESSION['TransactionID']."&extUID=".$_SESSION['username']);
+	header("Location: ".$_SESSION['WIDGET']."?tid=".$_SESSION['TransactionID']."&extUID=".$_SESSION['username']);
 }
 ?>
 

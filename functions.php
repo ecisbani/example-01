@@ -24,8 +24,8 @@ function getTransacionID($username)
 {
 global $cert_pwd;
 global $cert_name;
-global $sme_host;
-	$client = new JsonRpcClient($sme_host.'/Time4UserServices/services/backend/t4ujson');
+global $time4user_methods;
+	$client = new JsonRpcClient($time4user_methods);
 	
 	$client->sslCheck(false);
 	$client->sslClientAuth($cert_name, $cert_pwd);
@@ -56,8 +56,8 @@ function authOTP($username,$otp)
 {	
 global $cert_pwd;
 global $cert_name;
-global $sme_host;
-	$client = new JsonRpcClient($sme_host.'/Time4eID/backend/auth');
+global $time4id_methods;
+	$client = new JsonRpcClient($time4id_methods);
 	$client->debug = false;
 	$client->sslCheck(false);
 	$client->sslClientAuth($cert_name, $cert_pwd);
