@@ -4,6 +4,7 @@ include 'functions.php';
 
 // associate a TransactionID to the username
 $_SESSION['TransactionID'] = getTransacionID($_SESSION['username']);    
+// TODO: list error code to manage
 
 // redirect the browser to the Valid pages to complete the enroll procedure
 if ($_SESSION['TransactionID']!='') {

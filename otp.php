@@ -20,10 +20,10 @@ if ($_POST) {
        		1) 808 = the user entered a bad OTP
 	        2) 816 = user entered 3 bad OTP in a row, 
 		         use the App to resync
-		3) 809 = token is locked, unlock from admin control
+		3) 809 = token is locked, unlock it from admin control
 		         panel (https://admin.time4mind.com)
 	        4) -4002 = no token found for this user,
-			   her shoulds go to the enroll process 
+			   her should go to the enroll process 
 	*/
 		}
         }
@@ -36,18 +36,18 @@ if (isset($_GET['msg'])) {
 	//$response = $_GET['msg'];
 	$response = $_GET;
 /* You should manage responses, most relevant cases are:
-1001 = Well done! The service is now enabled
-1000 = The service is not available or authorized (TransactionID is empty)
-0401 = An unexpected error occurred on the server, retry later
-0402 = Service data are not available, retry later
-0403 = The company user has already activated the service with a different Time4Mind credentials
-0404 = The Time4Mind user has already activated the service with a different company username
-0405 = The service has reached the maximum number of users allowed
-       (you can prevent this usually but concurrent enrollements may occur...)
-0406 = SESSION EXPIRED OR NOT VALID
  257 = The service is not available or authorized (TransactionID is empty)
+ 401 = An unexpected error occurred on the server, retry later
+ 402 = Service data are not available, retry later
+ 403 = The company user has already activated the service with a different Time4Mind credentials
+ 404 = The Time4Mind user has already activated the service with a different company username
+ 405 = The service has reached the maximum number of users allowed
+       (you can prevent this usually but concurrent enrollements may occur...)
+ 406 = SESSION EXPIRED OR NOT VALID
  515 = Time at your disposal is expired! (TransactionID expired)
  516 = TRANSACTION ID IS NOT VALID
+1000 = The service is not available or authorized (TransactionID is empty)
+1001 = Well done! The service is now enabled
 */
 	}
 ?>

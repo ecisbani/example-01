@@ -1,5 +1,6 @@
 
-* check for available user before to start enroll
 
-* tips to manage enroll error codes
+* list enroll error codes for getTransactionID
+
+* check for available user before to start enroll
 
