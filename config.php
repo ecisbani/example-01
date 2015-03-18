@@ -1,7 +1,7 @@
 <?php
 
 // Credentials PEM file and password
-$cert_name = '/var/www/ssl/certificate.pem';
+$cert_name = '/var/lib/openshift/55098f494382ecdb370000c5/app-root/data/certificate.pem_collaudo';
 $cert_pwd = 'password';
 
 // hostname for WIDGET
