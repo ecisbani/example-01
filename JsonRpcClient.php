@@ -1,7 +1,4 @@
 <?php
-
-#include('log4php/Logger.php');
-
 /**
  * JSON-RPC fault class
  * 
@@ -15,12 +12,12 @@ class JsonRpcFault extends Exception {}
  * JSNO-RPC client class
  *
  * @author Daniele Ribaudo
- * @version 1.0
+ * @version 1.2
  * 
  */
 class JsonRpcClient
 {
-    const VERSION               = '1.0';
+    const VERSION               = '1.2';
     const DEF_USER_AGENT        = 'JSON-RPC Client/';
     const CONNECTION_HEADER     = 'Connection: close';
     const CONTENT_TYPE_HEADER   = 'Content-Type: application/json';
@@ -175,16 +172,6 @@ class JsonRpcClient
     private static $user_agent;
     
     private static $json_pretty_print = 0;
-    
-    /**
-     * Avoid to include explicitely the php file
-     * 
-     * @access public
-     * @param string $class_name
-     */
-    public function __autoload($class_name) {
-        include "$class_name.php";
-    }
     
     /**
      * Constructor
@@ -412,8 +399,7 @@ class JsonRpcClient
      */
     private function getResult(array $payload)
     {
-        if (array_key_exists('result',$payload)) {
-        //if (isset($payload['result'])) {
+        if (array_key_exists('result', $payload)) {
             return $payload['result'];
         }
 
@@ -494,7 +480,14 @@ class JsonRpcClient
             curl_setopt($ch, CURLOPT_USERPWD, "$this->username:$this->password");
         }
 
-        $http_body = curl_exec($ch);
+// 2015-04-14 - workaround made by cisba
+// instead to curl_exec just one time, I try 3 times to manage the random occurrence of the
+// curl error: [28] - Operation timed out after 0 milliseconds with 0 out of 0 bytes received
+        for ($i = 1; $i <= 3; $i++) {
+                $http_body = curl_exec($ch);
+                if (curl_errno($ch) == 28) sleep (1);
+                else break;
+                }
         if (curl_errno($ch)) {
             $this->error("curl error: [".curl_errno($ch)."] - ".curl_error($ch));
             throw new JsonRpcFault(curl_error($ch), -1);
