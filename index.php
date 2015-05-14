@@ -21,7 +21,7 @@ if (isset($_GET['logout'])) {
 	}
 ?>
 
-<!DOCTYPE html> <html> <head> <title>Login Form in PHP</title> </head> <body>
+<!DOCTYPE html> <html> <head> <title>Valid-2FA Example-01</title> </head> <body>
 <h4>Valid 2FA Simple Integration Example</h4>
 
 <form action="" method="post">

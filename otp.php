@@ -52,7 +52,7 @@ if (isset($_GET['msg'])) {
 }
 ?>
 
-<!DOCTYPE html><html><head> <title>Time4eID DEMO</title> </head>
+<!DOCTYPE html><html><head> <title>Valid-2FA Example-01</title> </head>
 <p>username: <?php print_r ($_SESSION['username']);?></p>
 <p>Please, insert the One Time Password generated on your smartphone with the app Valid
 <form role="form" name="formProfile" method="post">
